@@ -97,4 +97,4 @@ This project combines 3D visualization techniques with narrative storytelling to
 
 ## License
 
-MIT 
+MIT
