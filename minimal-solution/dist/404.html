@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404: Page Not Found</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, Roboto, "Segoe UI", sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background: #000;
+      color: #fff;
+    }
+    .container {
+      text-align: center;
+    }
+    h1 {
+      font-size: 5rem;
+      margin: 0;
+    }
+    h2 {
+      font-weight: normal;
+      font-size: 1.5rem;
+    }
+    a {
+      color: #fff;
+      margin-top: 20px;
+      display: inline-block;
+    }
+  </style>
+  <script src="loader.js"></script>
+</head>
+<script>
+// Direct fix for all asset loading
+(function() {
+  // Fix asset errors
+  window.addEventListener('error', function(e) {
+    if (e.target && (e.target.src || e.target.href)) {
+      var url = e.target.src || e.target.href;
+      if (url.includes('/_next/')) {
+        console.log('Fixing asset URL:', url);
+        var newUrl = 'asset.php?f=' + url.split('/_next/')[1];
+        
+        if (e.target.src) e.target.src = newUrl;
+        if (e.target.href) e.target.href = newUrl;
+      }
+    }
+  }, true);
+  
+  // Fix dynamic fetch calls
+  const originalFetch = window.fetch;
+  window.fetch = function(url, options) {
+    if (typeof url === 'string' && url.includes('/_next/')) {
+      url = 'asset.php?f=' + url.split('/_next/')[1];
+    }
+    return originalFetch.call(this, url, options);
+  };
+  
+  // Try to load critical assets after a delay
+  setTimeout(function() {
+    if (typeof loadCriticalAssets === 'function') {
+      console.log('Loading critical assets...');
+      loadCriticalAssets()
+        .then(() => console.log('Assets loaded successfully'))
+        .catch(err => console.error('Error loading assets:', err));
+    }
+  }, 1000);
+})();
+</script>
+<body>
+  <div class="container">
+    <h1>404</h1>
+    <h2>This page could not be found.</h2>
+    <a href="/">Return to homepage</a>
+  </div>
+</body>
+</html>

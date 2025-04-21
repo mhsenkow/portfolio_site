@@ -1,0 +1,36 @@
+{
+  "name": "archive-drift",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@react-three/drei": "9.70.4",
+    "@react-three/fiber": "8.14.5",
+    "buffer": "^6.0.3",
+    "framer-motion": "^12.7.4",
+    "gsap": "^3.12.2",
+    "next": "13.5.4",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "three": "0.153.0",
+    "three-stdlib": "^2.27.3",
+    "zustand": "^4.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "20.8.5",
+    "@types/react": "18.2.28",
+    "@types/react-dom": "18.2.13",
+    "@types/three": "0.153.0",
+    "autoprefixer": "10.4.16",
+    "eslint": "8.51.0",
+    "eslint-config-next": "13.5.4",
+    "postcss": "8.4.31",
+    "tailwindcss": "3.3.3",
+    "typescript": "5.2.2"
+  }
+}
